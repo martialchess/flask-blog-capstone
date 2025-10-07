@@ -1,7 +1,7 @@
 # Clean Blog Flask Project
 
 ## Overview
-This project is a Flask-based implementation of the Clean Blog theme. It demonstrates how to build a dynamic blog using Flask, Jinja templates, and data fetched from an external API. The project features dynamic routing, static asset management, and a modular template structure.
+This project is a Flask-based implementation of the Clean Blog theme. It demonstrates how to build a dynamic blog using Flask, Jinja templates, and data fetched from an external API. The project features dynamic routing, static asset management, modular template structure, and email functionality.
 
 ## Features Implemented
 - **Dynamic Homepage:** Fetches blog post data from an external JSON API and displays it on the homepage.
@@ -9,24 +9,29 @@ This project is a Flask-based implementation of the Clean Blog theme. It demonst
 - **Dynamic Header Images:** The header image changes based on the page being viewed (home, about, contact, or individual post).
 - **Template Inheritance:** Uses Jinja includes for navigation, header, and footer for DRY (Don't Repeat Yourself) code.
 - **Navigation:** All navigation links use Flask's `url_for` for robust, route-safe linking.
+- **Contact Form:** Functional contact form that sends emails using Gmail SMTP.
+- **Dynamic Headers:** Page headers change dynamically based on content and form submission status.
+- **Environment Variables:** Secure credential management using dotenv for email configuration.
 
 ## Challenges & Lessons Learned
 - **Static vs. Dynamic Paths:** Learned the importance of using absolute paths (with `url_for('static', ...)`) for static assets to avoid issues with relative paths, especially on dynamic routes like `/post/<id>`.
 - **Data Handling:** Adjusted data access from object attributes to dictionary keys to match the structure of the fetched JSON.
 - **Template Context:** Ensured that variables (like `header_image` and `post`) are passed correctly to templates for dynamic rendering.
 - **Debugging 404s:** Resolved issues with missing routes and incorrect template links.
+- **Email Integration:** Implemented secure email handling with environment variables and Gmail SMTP.
 
 ## Real-World Use Cases
 - Personal or company blogs
 - News or article websites
 - Educational content platforms
 - Portfolio sites with blog sections
+- Contact form integration for business websites
 
 ## Future Plans
-- **Contact Form Functionality:**
-  - Make the contact form work by handling POST requests in Flask.
-  - Validate and process form data.
-  - Send emails using Python's `smtplib`.
+- **Contact Form Improvements:**
+  - Add form validation with Flask-WTF
+  - Implement custom email templates
+  - Add rate limiting for form submissions
 - **Advanced Forms:**
   - Integrate Flask-WTForms for robust form handling and validation.
   - Add CSRF protection and better error handling.
@@ -41,17 +46,27 @@ This project is a Flask-based implementation of the Clean Blog theme. It demonst
 - Fixed issues with static asset loading on dynamic routes.
 - Debugged and corrected data access patterns for API-fetched content.
 - Improved template structure for maintainability.
+- Implemented secure email handling with environment variables.
+- Set up proper contact form submission and response flow.
 
 ## Things Learned
 - The importance of absolute vs. relative paths in web development.
 - How Flask's `url_for` helps avoid path issues.
 - How to pass and use dynamic data in Jinja templates.
 - The value of modular, reusable template components.
+- Secure handling of sensitive credentials using environment variables.
+- Email handling with Python's `smtplib` and Gmail SMTP.
+- Dynamic form processing with Flask.
 
 ## How to Run
-1. Install requirements: `pip install flask requests`
-2. Run the app: `python main.py`
-3. Visit `http://localhost:5000` in your browser.
+1. Install requirements: `pip install flask requests python-dotenv`
+2. Copy `.env.example` to `.env` and fill in your Gmail credentials:
+   ```
+   BLOG_EMAIL_USER=your_gmail@gmail.com
+   BLOG_EMAIL_PASS=your_gmail_app_password
+   ```
+3. Run the app: `python main.py`
+4. Visit `http://localhost:5000` in your browser.
 
 ---
 
